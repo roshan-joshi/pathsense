@@ -9,7 +9,10 @@ test.describe('GitHub Pages subpath', () => {
     const seen: { url: string; status: number }[] = [];
     const failed: string[] = [];
     page.on('response', (r) => { if (r.url().startsWith(origin)) seen.push({ url: new URL(r.url()).pathname, status: r.status() }); });
-    page.on('requestfailed', (r) => failed.push(r.url()));
+    // A host with byte-range support (GitHub Pages) makes the browser cancel the first full-file <audio> fetch and
+    // re-request it in ranges, reported as net::ERR_ABORTED on a media request. That is normal, so it is excluded
+    // here; every narration file is instead verified to download completely further below.
+    page.on('requestfailed', (r) => { if (!(r.resourceType() === 'media' && r.failure()?.errorText === 'net::ERR_ABORTED')) failed.push(`${r.failure()?.errorText} ${r.url()}`); });
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
@@ -25,6 +28,12 @@ test.describe('GitHub Pages subpath', () => {
     expect(seen.filter((s) => s.status >= 400), 'non-OK responses').toEqual([]);
     expect(failed, 'failed requests').toEqual([]);
     expect(errors).toEqual([]);
+
+    for (let i = 1; i <= 7; i++) {
+      const r = await page.request.get(new URL(`audio/ch${i}.m4a`, baseURL!).toString());
+      expect(r.status(), `ch${i}.m4a`).toBe(200);
+      expect((await r.body()).length, `ch${i}.m4a size`).toBeGreaterThan(300_000);
+    }
 
     const kinds = (ext: string) => seen.filter((s) => s.url.endsWith(ext)).length;
     expect(kinds('.m4a')).toBeGreaterThanOrEqual(7);   // narration for every chapter
