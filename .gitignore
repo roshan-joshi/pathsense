@@ -24,3 +24,4 @@ tests/private-terms.local.json
 *.log
 .env
 .env.*
+dist-pages/

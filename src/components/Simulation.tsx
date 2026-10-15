@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { PROCESS_STEPS } from '../content/story';
 import { config } from '../content/config';
 import { ProcessStrip, StateChip } from './ui';
+import { asset } from '../lib/asset';
 
 /**
  * Optional interactive product moment: a clearly labelled simulated PathSense interaction.
@@ -34,7 +35,7 @@ export function Simulation({ onClose }: { onClose: () => void }) {
             <div className="sim-screen">
               <div className="sim-goal">Goal <b>Find coffee</b></div>
               <div className={`sim-cam step-${i}`}>
-                <img src="images/pantry-feed.jpg" alt="" />
+                <img src={asset('images/pantry-feed.jpg')} alt="" />
                 {i >= 2 && <div className={`sim-cand ${i === 5 ? 'ok' : ''}`} />}
                 {i === 1 && <div className="sim-scan" />}
               </div>

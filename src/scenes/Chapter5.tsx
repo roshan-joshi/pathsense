@@ -2,6 +2,7 @@ import { useScene } from '../app/useScene';
 import { Headline, Img, Kicker, StateChip, Veil } from '../components/ui';
 import type { Fx } from '../timeline/fx';
 import type gsap from 'gsap';
+import { asset } from '../lib/asset';
 
 /* Chapter 5 — Personal to every individual (35s) */
 function build({ q, tl, fx }: { q: gsap.utils.SelectorFunc; tl: gsap.core.Timeline; fx: Fx }) {
@@ -37,7 +38,7 @@ export function Chapter5({ active, reduced }: { active: boolean; reduced: boolea
         <Headline size="lg" style={{ marginTop: 12 }}>No two people want the same help.</Headline>
       </div>
       <div className="profile a">
-        <div className="avatar"><img src="images/ch3-complete-cup.jpg" alt="" /></div>
+        <div className="avatar"><img src={asset('images/ch3-complete-cup.jpg')} alt="" /></div>
         <h3>The café owner</h3><p className="who">Years of kitchen knowledge · prefers short, direct prompts</p>
         <div className="pref"><span className="lbl">Instruction detail</span><Slider cls="k-detail" lo="Brief" hi="Step by step" /></div>
         <div className="pref"><span className="lbl">Speaking speed</span><Slider cls="k-speed" lo="Slower" hi="Faster" /></div>

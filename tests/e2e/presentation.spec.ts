@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 test.describe('cinematic mode', () => {
   test('start screen is accessible and starts playback', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
     await expect(page.getByRole('dialog')).toBeVisible();
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag22aa']).analyze();
     expect(axe.violations, JSON.stringify(axe.violations, null, 2)).toEqual([]);
@@ -15,7 +15,7 @@ test.describe('cinematic mode', () => {
   });
 
   test('timeline is deterministic and runs ~5 minutes across 7 chapters', async ({ page }) => {
-    await page.goto('/?render=1');
+    await page.goto('./?render=1');
     await page.waitForFunction(() => window.__pathsense?.ready);
     const info = await page.evaluate(() => ({ total: window.__pathsense!.total, chapters: window.__pathsense!.chapters }));
     expect(info.chapters).toHaveLength(7);
@@ -30,7 +30,7 @@ test.describe('cinematic mode', () => {
   });
 
   test('keyboard presenter controls work', async ({ page }) => {
-    await page.goto('/?autostart=1&narration=0');
+    await page.goto('./?autostart=1&narration=0');
     await page.waitForFunction(() => window.__pathsense?.state().started);
     await page.keyboard.press('3');
     expect((await page.evaluate(() => window.__pathsense!.state())).chapterIndex).toBe(2);
@@ -49,7 +49,7 @@ test.describe('cinematic mode', () => {
   });
 
   test('ends cleanly with a replay option', async ({ page }) => {
-    await page.goto('/?autostart=1&narration=0');
+    await page.goto('./?autostart=1&narration=0');
     await page.waitForFunction(() => window.__pathsense?.state().started);
     await page.evaluate(() => window.__pathsense!.seek(window.__pathsense!.total - 1.5));
     await expect(page.getByRole('button', { name: 'Watch again' })).toBeVisible({ timeout: 10_000 });
@@ -59,7 +59,7 @@ test.describe('cinematic mode', () => {
     const errors: string[] = [];
     page.on('pageerror', (e) => errors.push(e.message));
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
-    await page.goto('/?render=1');
+    await page.goto('./?render=1');
     await page.waitForFunction(() => window.__pathsense?.ready);
     for (let t = 0; t < 306; t += 7) await page.evaluate((x) => window.__pathsense!.seek(x), t);
     expect(errors).toEqual([]);
@@ -68,7 +68,7 @@ test.describe('cinematic mode', () => {
 
 test.describe('reading mode', () => {
   test('is structured, keyboard reachable and passes axe', async ({ page }) => {
-    await page.goto('/#/read');
+    await page.goto('./#/read');
     await expect(page.getByRole('heading', { level: 1, name: 'PathSense Home' })).toBeVisible();
     const h2 = await page.getByRole('heading', { level: 2 }).allTextContents();
     expect(h2.length).toBeGreaterThanOrEqual(8);
@@ -80,7 +80,7 @@ test.describe('reading mode', () => {
     await expect(page.locator(':focus')).toBeVisible();
   });
   test('skip link reaches reading mode from the cinematic page', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('./');
     // The start dialog focuses its primary action; Shift+Tab walks back through the dialog's options to the skip link,
     // which is the first focusable element in the document.
     const skip = page.getByRole('link', { name: 'Skip to accessible reading mode' });
@@ -94,7 +94,7 @@ test.describe('reading mode', () => {
 test.describe('reduced motion', () => {
   test('respects prefers-reduced-motion', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
-    await page.goto('/?render=1');
+    await page.goto('./?render=1');
     await page.waitForFunction(() => window.__pathsense?.ready);
     expect((await page.evaluate(() => window.__pathsense!.state())).reducedMotion).toBe(true);
   });

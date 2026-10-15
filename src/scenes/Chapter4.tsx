@@ -2,6 +2,7 @@ import { useScene } from '../app/useScene';
 import { Headline, Img, Kicker, RoadmapPanel, StateChip, Veil } from '../components/ui';
 import { drawPrep, type Fx } from '../timeline/fx';
 import type gsap from 'gsap';
+import { asset } from '../lib/asset';
 
 /* Chapter 4 — A home that can provide useful information (44s). Three stages, one system. */
 function build({ root, q, tl, fx }: { root: HTMLElement; q: gsap.utils.SelectorFunc; tl: gsap.core.Timeline; fx: Fx }) {
@@ -49,7 +50,7 @@ export function Chapter4({ active, reduced }: { active: boolean; reduced: boolea
       <div className="vignette" />
       <Kicker className="abs kicker" style={{ left: 160, top: 80 }}>The camera roadmap · three stages, one system · none built yet</Kicker>
       <div className="viewfinder">
-        <img src="images/pantry-feed.jpg" alt="" />
+        <img src={asset('images/pantry-feed.jpg')} alt="" />
         <span className="tag">Phone camera · pantry</span>
         <span className="pt">Pan · tilt · you asked</span>
       </div>

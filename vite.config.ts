@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Offline-first build: relative asset paths, a single IIFE bundle (no ES module
+// Offline-first build: relative asset paths by default, a single IIFE bundle (no ES module
 // script tag) so the built index.html also opens directly from the file system.
+// GitHub Pages sets VITE_BASE=/pathsense/ (see .github/workflows/pages.yml).
 export default defineConfig({
   plugins: [
     react(),
@@ -15,7 +16,7 @@ export default defineConfig({
       },
     },
   ],
-  base: './',
+  base: process.env.VITE_BASE || './',
   build: {
     target: 'es2019',
     modulePreload: false,

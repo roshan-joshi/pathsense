@@ -16,7 +16,9 @@
     "export:pdf": "node scripts/export-pdf.mjs",
     "export:stills": "node scripts/export-stills.mjs",
     "export:pptx": "node scripts/export-pptx.mjs",
-    "export:video": "node scripts/export-video.mjs"
+    "export:video": "node scripts/export-video.mjs",
+    "build:pages": "VITE_BASE=/pathsense/ vite build --outDir dist-pages",
+    "test:pages": "npm run build:pages && playwright test -c playwright.pages.config.ts"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "^5.1.0",

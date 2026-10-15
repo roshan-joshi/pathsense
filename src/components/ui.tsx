@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
+import { asset } from '../lib/asset';
 
 /* Shared premium design-system components. Pure markup + CSS; motion is applied by scene timelines. */
 
@@ -63,8 +64,8 @@ export const Veil = ({ className = '' }: { className?: string }) => <div classNa
 
 export const Img = ({ name, className = '', style, alt = '' }: { name: string; className?: string; style?: CSSProperties; alt?: string }) => (
   <picture className={`img ${className}`} style={style}>
-    <source srcSet={`images/${name}.webp`} type="image/webp" />
-    <img src={`images/${name}.jpg`} alt={alt} draggable={false} />
+    <source srcSet={asset(`images/${name}.webp`)} type="image/webp" />
+    <img src={asset(`images/${name}.jpg`)} alt={alt} draggable={false} />
   </picture>
 );
 

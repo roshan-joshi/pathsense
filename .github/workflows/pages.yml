@@ -1,0 +1,74 @@
+name: Deploy presentation to GitHub Pages
+
+# Builds the static Vite app and publishes ONLY the contents of dist/ to GitHub Pages.
+# Source, docs, tests, backups and exports are never part of the published artifact.
+on:
+  push:
+    branches: [presentation/cafe-owner-v3]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # --ignore-scripts: the optional local-narration dependency (kokoro-js / onnxruntime)
+      # downloads large native binaries in its install script and is not needed to build the site.
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Type check and unit tests
+        run: |
+          npx tsc --noEmit
+          npm test
+
+      - name: Build for GitHub Pages (base /pathsense/)
+        run: npx vite build
+        env:
+          VITE_BASE: /pathsense/
+
+      - name: Verify the published bundle
+        run: |
+          set -e
+          # the ambient bed is already mixed into ch1.m4a; the standalone file is not needed at runtime
+          rm -f dist/audio/ambient-*.m4a
+          test -f dist/index.html
+          grep -q 'src="/pathsense/assets/app.js"' dist/index.html
+          grep -q 'href="/pathsense/assets/style.css"' dist/index.html
+          test "$(ls dist/audio/ch*.m4a | wc -l)" -eq 7
+          # nothing private or unnecessary may be published
+          if find dist -type f \( -name '*.mp4' -o -name '*.pptx' -o -name '*.pdf' -o -name '*.map' -o -name '.env*' \) | grep -q .; then echo 'unexpected file type in dist'; exit 1; fi
+          if grep -rIlE 'backup-before|references/|/Users/' dist; then echo 'unexpected path reference in dist'; exit 1; fi
+          echo "Publishing $(find dist -type f | wc -l) files, $(du -sh dist | cut -f1)"
+          find dist -type f | sort
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

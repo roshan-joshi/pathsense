@@ -2,6 +2,7 @@ import { useScene } from '../app/useScene';
 import { Headline, Img, Kicker, Veil } from '../components/ui';
 import type { Fx } from '../timeline/fx';
 import type gsap from 'gsap';
+import { asset } from '../lib/asset';
 
 /* Chapter 2 — The tasks that matter (40s) */
 const TASKS = ['Finding the coffee', 'Milk or juice?', 'Keys and the remote', 'A letter on the bench', 'What is in the fridge', 'What is in the pantry', 'Which laundry bottle', 'Simple daily routines'];
@@ -69,7 +70,7 @@ export function Chapter2({ active, reduced }: { active: boolean; reduced: boolea
       <div className="tasklist">{TASKS.map((t) => <span key={t} className="pill">{t}</span>)}</div>
       {TILES.map((t) => (
         <div key={t.cls} className={`tile ${t.cls} ${t.img ? '' : 'letter'}`} style={{ left: t.x, top: t.y, width: t.w, height: t.h }}>
-          {t.img ? <img src={`images/${t.img}.jpg`} alt="" /> : (
+          {t.img ? <img src={asset(`images/${t.img}.jpg`)} alt="" /> : (
             <svg viewBox="0 0 120 80" aria-hidden="true"><rect x="8" y="12" width="104" height="60" rx="6" fill="#f4ece0" /><path d="M8 18 L60 50 L112 18" fill="none" stroke="#c9a054" strokeWidth="3" /><rect x="20" y="52" width="40" height="4" fill="#d9cfbf" /></svg>
           )}
           <span className="lbl">{t.label}</span>
@@ -80,12 +81,12 @@ export function Chapter2({ active, reduced }: { active: boolean; reduced: boolea
         <Headline size="xl" style={{ marginTop: 24 }}>It is <em>accomplishing the task</em> that matters.</Headline>
       </div>
       {/* Object chain: blurred backdrop + sharp focus card for each object */}
-      <div className="bd bd-pantry"><img src="images/ch1-hand-jar.jpg" alt="" /></div>
-      <div className="bd bd-fridge"><img src="images/tile-fridge-milk.jpg" alt="" /></div>
-      <div className="bd bd-cup"><img src="images/ch2-pour-detail.jpg" alt="" /></div>
-      <div className="fc fc-pantry" style={{ left: 640, top: 150, width: 640, height: 640 }}><img src="images/ch1-hand-jar.jpg" alt="" /></div>
-      <div className="fc fc-fridge" style={{ left: 560, top: 300, width: 800, height: 385 }}><img src="images/tile-fridge-milk.jpg" alt="" /></div>
-      <div className="fc fc-cup" style={{ left: 560, top: 170, width: 800, height: 640 }}><img src="images/ch2-pour-detail.jpg" alt="" /></div>
+      <div className="bd bd-pantry"><img src={asset('images/ch1-hand-jar.jpg')} alt="" /></div>
+      <div className="bd bd-fridge"><img src={asset('images/tile-fridge-milk.jpg')} alt="" /></div>
+      <div className="bd bd-cup"><img src={asset('images/ch2-pour-detail.jpg')} alt="" /></div>
+      <div className="fc fc-pantry" style={{ left: 640, top: 150, width: 640, height: 640 }}><img src={asset('images/ch1-hand-jar.jpg')} alt="" /></div>
+      <div className="fc fc-fridge" style={{ left: 560, top: 300, width: 800, height: 385 }}><img src={asset('images/tile-fridge-milk.jpg')} alt="" /></div>
+      <div className="fc fc-cup" style={{ left: 560, top: 170, width: 800, height: 640 }}><img src={asset('images/ch2-pour-detail.jpg')} alt="" /></div>
       <div className="grad-bottom" />
       <div className="ring" />
       <div className="chain">

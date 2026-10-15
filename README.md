@@ -28,6 +28,20 @@ To make a self-contained folder that opens by double-click and works offline (wr
 npm run export:offline
 ```
 
+## Hosting on GitHub Pages
+
+`.github/workflows/pages.yml` type-checks, unit-tests, builds with `VITE_BASE=/pathsense/` and publishes **only `dist/`** (the static site: HTML, JS, CSS, fonts, images, narration audio) to GitHub Pages at `https://roshan-joshi.github.io/pathsense/`. Source code, docs, tests, backups and exports are never published. The page carries `noindex` so search engines are asked not to list it.
+
+One-time setup (repository owner): *Settings → Pages → Build and deployment → Source: GitHub Actions*. Pages is not enabled by pushing code.
+
+Test the exact production layout locally (site served only under `/pathsense/`, root is 404):
+
+```bash
+npm run test:pages     # builds to dist-pages/ and runs all end-to-end tests under /pathsense/
+```
+
+The default `npm run build` uses relative paths, so the offline package still works from a double-click.
+
 ## Modes
 
 | Mode | How to open | What it is |

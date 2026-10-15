@@ -1,4 +1,5 @@
 import timing from './narration-timing.json';
+import { asset } from '../lib/asset';
 
 export type ChapterId = 'ch1' | 'ch2' | 'ch3' | 'ch4' | 'ch5' | 'ch6' | 'ch7';
 
@@ -104,7 +105,7 @@ const base: Omit<ChapterDef, 'index' | 'subtitles' | 'narrationFile'>[] = [
 export const chapters: ChapterDef[] = base.map((c, i) => {
   const nd = narrationDuration(c.id);
   if (nd > c.duration) throw new Error(`${c.id}: narration (${nd}s) longer than chapter duration (${c.duration}s)`);
-  return { ...c, index: i, subtitles: sub(c.id), narrationFile: `audio/${c.id}.m4a` };
+  return { ...c, index: i, subtitles: sub(c.id), narrationFile: asset(`audio/${c.id}.m4a`) };
 });
 
 export const chapterStart = (index: number) => chapters.slice(0, index).reduce((a, c) => a + c.duration, 0);

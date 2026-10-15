@@ -4,6 +4,7 @@ import { PROCESS_STEPS } from '../content/story';
 import { config } from '../content/config';
 import type { Fx } from '../timeline/fx';
 import type gsap from 'gsap';
+import { asset } from '../lib/asset';
 
 /* Chapter 3 — The first solution: find the coffee (60s). Simulated. */
 function build({ q, tl, fx }: { q: gsap.utils.SelectorFunc; tl: gsap.core.Timeline; fx: Fx }) {
@@ -83,7 +84,7 @@ export function Chapter3({ active, reduced }: { active: boolean; reduced: boolea
           <div className="goal"><span>Goal</span><b className="goal-chip">Find coffee</b></div>
         </div>
         <div className="cam">
-          <img src="images/pantry-feed.jpg" alt="" />
+          <img src={asset('images/pantry-feed.jpg')} alt="" />
           <div className="frame" />
           <div className="status">Camera · pantry</div>
           <div className="scan" />

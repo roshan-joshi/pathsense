@@ -4,6 +4,7 @@ import { proposal } from '../content/proposal';
 import { config } from '../content/config';
 import { drawPrep, type Fx } from '../timeline/fx';
 import type gsap from 'gsap';
+import { asset } from '../lib/asset';
 
 /* Chapter 7 — One home. Many futures. (50s) */
 function build({ root, q, tl, fx }: { root: HTMLElement; q: gsap.utils.SelectorFunc; tl: gsap.core.Timeline; fx: Fx }) {
@@ -60,11 +61,11 @@ export function Chapter7({ active, reduced }: { active: boolean; reduced: boolea
           <path className="p3" d="M960 520 C 800 640, 620 700, 470 720" />
           <path className="p4" d="M960 520 C 1120 640, 1300 700, 1450 720" />
         </svg>
-        <div className="home centre"><img src="images/ch7-house.jpg" alt="" /><div className="lbl">One real home · one real task</div></div>
-        <div className="home h1" style={{ left: 170, top: 330 }}><img src="images/ch7-person-a.jpg" alt="" /><div className="lbl">Identifying ingredients</div></div>
-        <div className="home h2" style={{ left: 1450, top: 310 }}><img src="images/ch7-person-b.jpg" alt="" /><div className="lbl">Household routines, hands free</div></div>
-        <div className="home h3" style={{ left: 170, top: 630 }}><img src="images/ch7-person-c.jpg" alt="" /><div className="lbl">Reading documents and labels</div></div>
-        <div className="home h4" style={{ left: 1450, top: 630 }}><img src="images/ch7-person-d.jpg" alt="" /><div className="lbl">Finding belongings · own pace, own words</div></div>
+        <div className="home centre"><img src={asset('images/ch7-house.jpg')} alt="" /><div className="lbl">One real home · one real task</div></div>
+        <div className="home h1" style={{ left: 170, top: 330 }}><img src={asset('images/ch7-person-a.jpg')} alt="" /><div className="lbl">Identifying ingredients</div></div>
+        <div className="home h2" style={{ left: 1450, top: 310 }}><img src={asset('images/ch7-person-b.jpg')} alt="" /><div className="lbl">Household routines, hands free</div></div>
+        <div className="home h3" style={{ left: 170, top: 630 }}><img src={asset('images/ch7-person-c.jpg')} alt="" /><div className="lbl">Reading documents and labels</div></div>
+        <div className="home h4" style={{ left: 1450, top: 630 }}><img src={asset('images/ch7-person-d.jpg')} alt="" /><div className="lbl">Finding belongings · own pace, own words</div></div>
       </div>
       <div className="abs head"><Headline size="xl">Start with one real problem.<br /><em>Build a platform that can support many.</em></Headline></div>
 
