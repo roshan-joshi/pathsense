@@ -122,8 +122,11 @@ test.describe('closing contact card', () => {
     await expect(card).toContainText('Presented by');
     await expect(card).toContainText('E Multitech Solution Pvt. Ltd.');
     const email = card.getByRole('link', { name: 'info@emultitechsolution.com' });
+    const phone = card.getByRole('link', { name: '+61 406 806 984' });
     const site = card.getByRole('link', { name: /www\.emultitechsolution\.com/ });
     await expect(email).toHaveAttribute('href', 'mailto:info@emultitechsolution.com');
+    await expect(phone).toHaveAttribute('href', 'tel:+61406806984');
+    await expect(card.locator('dt')).toHaveText(['Email', 'Phone', 'Website']);
     await expect(site).toHaveAttribute('href', 'https://www.emultitechsolution.com/');
     await expect(site).toHaveAttribute('target', '_blank');
     await expect(site).toHaveAttribute('rel', /noopener/);
@@ -133,11 +136,30 @@ test.describe('closing contact card', () => {
     await email.focus();
     expect(await email.evaluate((e) => getComputedStyle(e).boxShadow)).not.toBe('none');
     await page.keyboard.press('Tab');
+    await expect(phone).toBeFocused();
+    expect(await phone.evaluate((e) => getComputedStyle(e).boxShadow)).not.toBe('none');
+    await page.keyboard.press('Tab');
     await expect(site).toBeFocused();
     // text is selectable (real text, not an image)
     expect(await email.evaluate((e) => getComputedStyle(e).userSelect)).not.toBe('none');
     // no tracking or form was added
     expect(await page.locator('form, input[type=email]').count()).toBe(0);
+  });
+
+  test('never collides with the captions or the disclosure note while the closing line is spoken', async ({ page }) => {
+    await renderMode(page);
+    const s7 = await chapterStart(page, 'ch7');
+    const clashes: string[] = [];
+    for (let l = 42; l <= 50; l += 0.5) {
+      await seek(page, s7 + l);
+      const r = await page.evaluate(() => {
+        const card = document.querySelector('[data-testid="contact-card"]') as HTMLElement; const cb = card.getBoundingClientRect();
+        const hit = (sel: string) => { const e = document.querySelector(sel) as HTMLElement | null; if (!e) return false; if (getComputedStyle(e.closest('.captions') || e).display === 'none') return false; const b = e.getBoundingClientRect(); return b.width > 0 && Math.min(cb.right, b.right) - Math.max(cb.left, b.left) > 1 && Math.min(cb.bottom, b.bottom) - Math.max(cb.top, b.top) > 1; };
+        return { caption: hit('.captions p'), disclosure: hit('.disclosure') };
+      });
+      if (r.caption || r.disclosure) clashes.push(`ch7+${l}s ${JSON.stringify(r)}`);
+    }
+    expect(clashes).toEqual([]);
   });
 
   test('is outside the role="img" art wrapper, so assistive technology can reach it; axe is clean', async ({ page }) => {
@@ -162,11 +184,14 @@ test.describe('closing contact card', () => {
     const panel = page.locator('.end-overlay');
     await expect(panel).toBeVisible({ timeout: 10_000 });
     await expect(panel.getByRole('link', { name: 'info@emultitechsolution.com' })).toHaveAttribute('href', 'mailto:info@emultitechsolution.com');
+    await expect(panel.getByRole('link', { name: '+61 406 806 984' })).toHaveAttribute('href', 'tel:+61406806984');
     await expect(panel).toContainText('E Multitech Solution Pvt. Ltd.');
     let r = await axe(page); expect(r.violations, JSON.stringify(r.violations, null, 2)).toEqual([]);
     await page.goto('./#/read');
     const rc = page.getByTestId('contact-card');
     await expect(rc.getByRole('link', { name: 'info@emultitechsolution.com' })).toHaveAttribute('href', 'mailto:info@emultitechsolution.com');
+    await expect(rc.getByRole('link', { name: '+61 406 806 984' })).toHaveAttribute('href', 'tel:+61406806984');
+    await expect(rc.getByRole('link', { name: /www\.emultitechsolution\.com/ })).toHaveAttribute('href', 'https://www.emultitechsolution.com/');
     await expect(page.getByRole('heading', { level: 3, name: 'Contact' })).toBeVisible();
     r = await axe(page); expect(r.violations, JSON.stringify(r.violations, null, 2)).toEqual([]);
   });
@@ -200,6 +225,7 @@ test.describe('responsive', () => {
       await seek(page, (await chapterStart(page, 'ch7')) + 48.5);
       const card = await page.getByTestId('contact-card').boundingBox();
       expect(card!.x).toBeGreaterThanOrEqual(0); expect(card!.x + card!.width).toBeLessThanOrEqual(v.w + 0.5);
+      expect(card!.y + card!.height, 'card stays above the caption zone of the 1080p stage').toBeLessThanOrEqual(v.h);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
     });
     test(`${v.name}: the end panel shows a readable, unclipped contact card`, async ({ page }) => {
@@ -210,8 +236,9 @@ test.describe('responsive', () => {
       await expect(page.locator('.end-overlay')).toBeVisible({ timeout: 10_000 });
       const card = await page.locator('.end-overlay .contact-card').boundingBox();
       expect(card!.x).toBeGreaterThanOrEqual(0); expect(card!.x + card!.width).toBeLessThanOrEqual(v.w + 0.5);
-      const link = await page.locator('.end-overlay .contact-links a').first().boundingBox();
-      expect(link!.x + link!.width).toBeLessThanOrEqual(v.w + 0.5);
+      for (const a of await page.locator('.end-overlay .contact-list a').all()) { const bb = (await a.boundingBox())!; expect(bb.x).toBeGreaterThanOrEqual(0); expect(bb.x + bb.width).toBeLessThanOrEqual(v.w + 0.5); }
+      const ph = await page.locator('.end-overlay .contact-list a[href^="tel:"]').boundingBox();
+      expect(ph!.height, 'phone number stays on one line').toBeLessThan(34);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
     });
   }

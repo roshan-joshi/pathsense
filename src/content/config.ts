@@ -3,11 +3,12 @@ export const config = {
   productName: 'PathSense Home',
   organisationPlaceholder: 'your organisation',
   /** Presenting / contact organisation shown on the final screen and in reading mode.
-   *  Exact legal display name and details supplied by the owner. No phone or address is published. */
+   *  Exact legal display name and details supplied by the owner. No street address is published. */
   contact: {
     name: 'E Multitech Solution Pvt. Ltd.',
     email: 'info@emultitechsolution.com',
-    phone: '',
+    phone: '+61 406 806 984',        // displayed
+    phoneHref: 'tel:+61406806984',   // dialled
     website: 'https://www.emultitechsolution.com/',
     websiteLabel: 'www.emultitechsolution.com',
   },

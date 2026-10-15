@@ -13,9 +13,16 @@ describe('E Multitech contact details (exact)', () => {
     expect(config.contact.email).toBe('info@emultitechsolution.com');
     expect(config.contact.website).toBe('https://www.emultitechsolution.com/');
   });
-  it('invents no phone number or address', () => {
-    expect(config.contact.phone).toBe('');
-    expect(JSON.stringify(config.contact)).not.toMatch(/\+\d|\d{4,}|street|road|kupondol/i);
+  it('uses the exact Australian phone number, displayed and dialled consistently', () => {
+    expect(config.contact.phone).toBe('+61 406 806 984');
+    expect(config.contact.phoneHref).toBe('tel:+61406806984');
+    expect(config.contact.phoneHref.replace(/\D/g, '')).toBe(config.contact.phone.replace(/\D/g, ''));
+  });
+  it('publishes no street address and no other phone number', () => {
+    expect(JSON.stringify(config.contact)).not.toMatch(/street|road|avenue|kupondol|near |po box/i);
+    // the same number appears twice (displayed and tel:), so compare by digits: exactly one distinct number
+    const numbers = new Set((JSON.stringify(config.contact).match(/\+\d[\d ]{6,}/g) || []).map((n) => n.replace(/\D/g, '')));
+    expect([...numbers]).toEqual(['61406806984']);
   });
 });
 

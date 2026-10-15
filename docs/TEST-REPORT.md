@@ -1,5 +1,25 @@
 # Test report
 
+## Phone number addition to the contact card (local, not committed or deployed)
+
+Added `+61 406 806 984` (`tel:+61406806984`) to the closing contact card, end panel and reading mode. Email and website links are unchanged. Backup taken first (`PATHSENSE-PRE-PHONE-CONTACT-BACKUP-20261016-043844`, 374 files verified by SHA-256 plus a git bundle).
+
+| Check | Result |
+| --- | --- |
+| `npx tsc --noEmit` | pass |
+| `npm test` | **29 / 29** (phone shown and dialled consistently by digits; exactly one distinct phone number; no street address) |
+| `npx playwright test` (root-served) | **36 passed**, 6 skipped (subpath-only tests, by design) |
+| strict `/pathsense/` layout suite | **42 passed**, 0 skipped |
+| Offline `file://` | pass, no errors |
+| Phone layouts (360 and 390 px) | inspected visually: every value on its own line, number intact, no mid-word breaks |
+
+New and updated browser assertions: the card lists Email, Phone, Website in order; the phone link is `tel:+61406806984`; keyboard order is email, phone, website with a visible focus ring on each; the card never collides with the caption or disclosure while the closing line plays (every 0.5 s); on all seven viewports every link and the one-line number stay inside the screen; the phone link appears in the end panel and reading mode; axe (WCAG 2A/AA/2.2 AA) stays clean.
+
+A first mobile layout let the email and website break mid-word. It was fixed (stacked label and value under 520 px) before testing was completed. One new unit test also had a flaw (it counted the displayed number and its `tel:` form as two numbers); the test was corrected, not the data.
+
+Not re-run for this change: the 5-minute real-time playthrough (nothing in the story, audio or timeline changed; the earlier full playthrough result stands).
+
+
 ## E Multitech branding revision (local review build, not committed or deployed)
 
 Run on 2026-10-15 against the branded build. The approved baseline was verified first: a build restored from the backup bundle is byte-identical to the live site.

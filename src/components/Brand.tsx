@@ -26,11 +26,11 @@ export function ContactCard({ className = '' }: { className?: string }) {
       <div className="contact-text">
         <p className="contact-kicker">Presented by</p>
         <p className="contact-name">{c.name}</p>
-        <p className="contact-links">
-          <a href={`mailto:${c.email}`}>{c.email}</a>
-          <span className="contact-sep" aria-hidden="true">·</span>
-          <a href={c.website} target="_blank" rel="noopener noreferrer">{c.websiteLabel}<span className="visually-hidden"> (opens in a new tab)</span></a>
-        </p>
+        <dl className="contact-list">
+          <div><dt>Email</dt><dd><a href={`mailto:${c.email}`}>{c.email}</a></dd></div>
+          <div><dt>Phone</dt><dd><a href={c.phoneHref}>{c.phone.replace(/ /g, '\u00a0')}</a></dd></div>
+          <div><dt>Website</dt><dd><a href={c.website} target="_blank" rel="noopener noreferrer">{c.websiteLabel}<span className="visually-hidden"> (opens in a new tab)</span></a></dd></div>
+        </dl>
       </div>
     </div>
   );

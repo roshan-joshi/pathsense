@@ -9,7 +9,8 @@ Scope: company branding only. The story, opening, seven chapters, narration, aud
 | Email | info@emultitechsolution.com | Supplied by the owner |
 | Website | https://www.emultitechsolution.com/ | Supplied by the owner |
 | Logo | White wordmark, unaltered | https://www.emultitechsolution.com/images/logo.webp (see `BRAND-ASSETS.md`) |
-| Phone / address / titles | none | Not supplied, none invented |
+| Phone | +61 406 806 984 (dialled as `tel:+61406806984`) | Supplied by the owner |
+| Address / titles | none | Not supplied, none invented |
 
 Hierarchy: **PathSense Home** is the product and presentation identity; **E Multitech Solution Pvt. Ltd.** appears as "Presented by" (the presenting and contact organisation). Nothing states or implies partnership, endorsement, funding or approval by any other organisation, and a test guards that.
 
@@ -46,7 +47,8 @@ Small screens: the stage is a scaled 16:9 canvas, so on phones the logo would sh
 
 ## Closing contact card
 Shown in the final scene from 43.0 s of chapter 7, fading in as the closing line is spoken, and repeated in the end panel and in reading mode.
-- Content: "Presented by" / **E Multitech Solution Pvt. Ltd.** / `info@emultitechsolution.com` (a `mailto:` link) · `www.emultitechsolution.com` (opens in a new tab).
+- Content: "Presented by" / **E Multitech Solution Pvt. Ltd.** / a labelled list: **Email** `info@emultitechsolution.com` (`mailto:`), **Phone** `+61 406 806 984` (`tel:+61406806984`, kept on one line with non-breaking spaces), **Website** `www.emultitechsolution.com` (opens in a new tab).
+- Layout: the stage card keeps its side-by-side glass design (logo, divider, text) and sits at y 676 so the taller card stays clear of the captions and the disclosure note (tested every 0.5 s). On screens up to 520 px wide, the responsive end panel and reading mode stack the logo above the text and each label above its value, so nothing breaks mid-word.
 - Real text, selectable, underlined links, visible focus ring, "(opens in a new tab)" for assistive technology, meaningful logo with alt text "E Multitech Solution".
 - Placed **outside** the `role="img"` art wrapper (the stage was restructured into an art layer plus overlay layers) so assistive technology can reach the links. The visual result is unchanged.
 - No form, analytics, tracking, subscription or backend was added.
@@ -56,7 +58,7 @@ See the handoff report. New: `public/brand/emultitech-logo-white.webp`, `src/con
 
 ## Known limitations and observations
 1. **Logo resolution.** The website publishes the wordmark only as a 131 × 42 px raster (WebP and PNG); there is no SVG or 2× file. It is used unaltered, so it looks slightly soft on 4K displays. Supplying a vector or 2× wordmark would fix this: replace the one file in `public/brand/` (and update the checksum in `tests/unit/brand.test.ts`).
-2. **Phones.** The cinematic stage is a scaled 16:9 canvas (existing behaviour, out of scope), so on a portrait phone the contact card inside the stage is small. The end panel and reading mode carry a fully legible, responsive version of the contact details.
+2. **Phones.** The cinematic stage is a scaled 16:9 canvas (existing behaviour, out of scope), so on a portrait phone the contact card inside the stage is small. The end panel and reading mode carry a fully legible, responsive version of the contact details, including a tappable phone number.
 3. **Pre-existing layout shift (not caused by branding).** The page has a cumulative layout shift of about 0.023 on both the approved baseline and this build, from the grain overlay and the start dialog as controls appear. Branding contributes zero (asserted by a test).
 4. **Pre-existing opening detail, left untouched on purpose.** Around 12 s the three opening sound cues ("a kettle", "a fridge door", "a room known by heart") overlap on screen because their windows overlap. It is in the approved live build and outside this scope; flagged for the owner's decision.
 5. The start screen carries no company mark (outside the requested scope); it could be added if wanted.

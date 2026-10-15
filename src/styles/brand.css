@@ -16,7 +16,7 @@
 .wm img { display: block; width: 131px; height: 42px; opacity: 0.94; }
 
 /* Closing scene: lives in a layer OUTSIDE the role="img" art wrapper so its links are reachable by assistive technology. */
-.contact-layer { position: absolute; left: 0; right: 0; top: 742px; z-index: 14; display: flex; justify-content: center; pointer-events: none; }
+.contact-layer { position: absolute; left: 0; right: 0; top: 676px; z-index: 14; display: flex; justify-content: center; pointer-events: none; }
 .contact-layer .contact-card { pointer-events: auto; font-size: 24px; }
 
 .contact-card {
@@ -31,17 +31,23 @@
 .contact-text { border-left: 1px solid rgba(255, 240, 220, 0.22); padding-left: 1.1em; min-width: 0; }
 .contact-text p { margin: 0; }
 .contact-kicker { font-size: 0.62em; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber-2); font-weight: 600; margin-bottom: 0.3em !important; }
-.contact-name { font-family: var(--font-display); font-size: 1.4em; line-height: 1.15; font-weight: 500; margin-bottom: 0.35em !important; overflow-wrap: anywhere; }
-.contact-links { font-size: 0.9em; line-height: 1.45; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1em 0.55em; }
-.contact-links a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 166, 90, 0.75); text-decoration-thickness: 1.5px; text-underline-offset: 0.2em; border-radius: 4px; overflow-wrap: anywhere; }
-.contact-links a:hover { color: var(--amber-2); }
-.contact-sep { color: var(--ink-3); }
+.contact-name { font-family: var(--font-display); font-size: 1.4em; line-height: 1.15; font-weight: 500; margin-bottom: 0.45em !important; overflow-wrap: anywhere; }
+.contact-list { margin: 0; display: grid; gap: 0.28em; font-size: 0.9em; line-height: 1.4; }
+.contact-list > div { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); align-items: baseline; column-gap: 0.7em; }
+.contact-list dt { font-size: 0.66em; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-3); font-weight: 600; }
+.contact-list dd { margin: 0; min-width: 0; }
+.contact-list a { color: var(--ink); text-decoration: underline; text-decoration-color: rgba(226, 166, 90, 0.75); text-decoration-thickness: 1.5px; text-underline-offset: 0.2em; border-radius: 4px; overflow-wrap: anywhere; }
+.contact-list a:hover { color: var(--amber-2); }
 
 /* End panel (real, responsive DOM): compact card under the thank-you line */
 .end-overlay .contact-card { font-size: 16px; margin: 4px 0 22px; max-width: 100%; }
+/* Narrow screens (responsive panel and reading mode only; the 1920 stage card is a scaled canvas and keeps its layout):
+   stack the logo above the text and each label above its value so long addresses never break mid-word. */
 @media (max-width: 520px) {
-  .end-overlay .contact-card { flex-direction: column; align-items: flex-start; }
-  .end-overlay .contact-text { border-left: 0; padding-left: 0; border-top: 1px solid rgba(255, 240, 220, 0.22); padding-top: 0.8em; }
+  .end-overlay .contact-card, .reading .contact-card { flex-direction: column; align-items: flex-start; width: 100%; }
+  .end-overlay .contact-text, .reading .contact-text { border-left: 0; padding-left: 0; border-top: 1px solid rgba(255, 240, 220, 0.22); padding-top: 0.8em; width: 100%; }
+  .end-overlay .contact-list, .reading .contact-list { gap: 0.7em; font-size: 0.95em; }
+  .end-overlay .contact-list > div, .reading .contact-list > div { grid-template-columns: 1fr; row-gap: 0.1em; }
 }
 
 /* Reading mode */
