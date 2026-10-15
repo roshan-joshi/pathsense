@@ -16,6 +16,8 @@ import { Controls } from '../components/Controls';
 import { StartScreen } from '../components/StartScreen';
 import { Simulation } from '../components/Simulation';
 import { useBroadcast } from './useBroadcast';
+import { BrandWatermark, ContactCard } from '../components/Brand';
+import { watermarkOpacity, contactOpacity, watermarkBoost } from '../content/brand';
 
 const params = new URLSearchParams(location.search);
 const RENDER = params.get('render') === '1';
@@ -114,16 +116,24 @@ export function Viewer() {
       <a className="skip-link" href="#/read">Skip to accessible reading mode</a>
       <div className={`viewer ${idle && state.playing ? 'is-idle' : ''}`} ref={viewerRef}>
         <div className="stage-wrap" ref={wrapRef}>
-          <div className="stage" style={{ transform: `translate(-50%, -50%) scale(${scale})` }} aria-hidden={!state.started} role="img" aria-label={`PathSense Home cinematic presentation, chapter ${state.chapterIndex + 1} of 7: ${chapters[state.chapterIndex].title}. A full text version is available in reading mode.`}>
-            <Chapter1 active={active === 'ch1'} reduced={reduced} />
-            <Chapter2 active={active === 'ch2'} reduced={reduced} />
-            <Chapter3 active={active === 'ch3'} reduced={reduced} />
-            <Chapter4 active={active === 'ch4'} reduced={reduced} />
-            <Chapter5 active={active === 'ch5'} reduced={reduced} />
-            <Chapter6 active={active === 'ch6'} reduced={reduced} />
-            <Chapter7 active={active === 'ch7'} reduced={reduced} />
-            <div className="disclosure" aria-hidden="true">{config.disclosure}</div>
-            {state.started && <Captions state={state} />}
+          <div className="stage" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
+            {/* The cinematic art is one labelled image for assistive technology; the full text lives in reading mode. */}
+            <div className="stage-art" aria-hidden={!state.started} role="img" aria-label={`PathSense Home cinematic presentation, chapter ${state.chapterIndex + 1} of 7: ${chapters[state.chapterIndex].title}. A full text version is available in reading mode.`}>
+              <Chapter1 active={active === 'ch1'} reduced={reduced} />
+              <Chapter2 active={active === 'ch2'} reduced={reduced} />
+              <Chapter3 active={active === 'ch3'} reduced={reduced} />
+              <Chapter4 active={active === 'ch4'} reduced={reduced} />
+              <Chapter5 active={active === 'ch5'} reduced={reduced} />
+              <Chapter6 active={active === 'ch6'} reduced={reduced} />
+              <Chapter7 active={active === 'ch7'} reduced={reduced} />
+              <div className="disclosure" aria-hidden="true">{config.disclosure}</div>
+              {state.started && <Captions state={state} />}
+            </div>
+            {/* E Multitech branding: decorative glass signature, then the real contact card in the closing scene. */}
+            <BrandWatermark opacity={state.started ? watermarkOpacity(state.time) : 0} boost={watermarkBoost(scale)} />
+            <div className="contact-layer" style={{ opacity: state.started ? contactOpacity(state.time) : 0, visibility: state.started && contactOpacity(state.time) > 0.01 ? 'visible' : 'hidden' }}>
+              <ContactCard />
+            </div>
           </div>
           {!state.started && !RENDER && <StartScreen onStart={(o) => engine.start(o)} />}
           {state.ended && !RENDER && (
@@ -131,6 +141,7 @@ export function Viewer() {
               <div className="panel">
                 <h1>Thank you.</h1>
                 <p className="tag">{config.productName} — {proposalNext}</p>
+                <ContactCard />
                 <div className="actions">
                   <button className="btn primary" onClick={() => engine.restart()}>Watch again</button>
                   <button className="btn" onClick={() => engine.jumpTo(6)}>Back to the partnership request</button>

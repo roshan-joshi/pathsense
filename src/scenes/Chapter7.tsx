@@ -1,7 +1,6 @@
 import { useScene } from '../app/useScene';
 import { Headline, Img, Kicker, Logo, StateChip, Veil } from '../components/ui';
 import { proposal } from '../content/proposal';
-import { config } from '../content/config';
 import { drawPrep, type Fx } from '../timeline/fx';
 import type gsap from 'gsap';
 import { asset } from '../lib/asset';
@@ -34,14 +33,12 @@ function build({ root, q, tl, fx }: { root: HTMLElement; q: gsap.utils.SelectorF
   tl.to(q('.homes-bg'), { autoAlpha: 0.2, duration: 1.2 }, 37.4);
   fx.reveal(tl, q('.final'), 38.2, { y: 0, d: 1.2 });
   fx.reveal(tl, q('.final .headline'), 42.0, { y: 14, d: 1.0 });
-  fx.reveal(tl, q('.final .next, .final .contact'), 45.0, { y: 10, d: 1.0, stagger: 0.6 });
+  fx.reveal(tl, q('.final .next'), 45.0, { y: 10, d: 1.0 });
   tl.to({}, { duration: 0.01 }, 50);
 }
 
 export function Chapter7({ active, reduced }: { active: boolean; reduced: boolean }) {
   const ref = useScene('ch7', build, reduced);
-  const c = config.contact;
-  const contactLines = [c.name, c.email, c.phone, c.website].filter(Boolean);
   return (
     <div ref={ref} className={`scene ch7 ${active ? 'is-active' : ''}`}>
       <Img name="bg-kitchen-soft" className="cover" style={{ filter: 'brightness(0.3)' }} />
@@ -82,7 +79,6 @@ export function Chapter7({ active, reduced }: { active: boolean; reduced: boolea
           <Logo />
           <Headline size="lg">Independence, <em>one meaningful task at a time.</em></Headline>
           <p className="next">{proposal.partnership.nextStep}</p>
-          <p className="contact">{contactLines.length ? contactLines.map((l) => <span key={l}>{l}<br /></span>) : 'Contact details: configure in src/content/config.ts'}</p>
         </div>
       </div>
       <Veil />

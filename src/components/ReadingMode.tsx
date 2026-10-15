@@ -2,11 +2,10 @@ import { chapters, totalDuration } from '../content/story';
 import { proposal } from '../content/proposal';
 import { config } from '../content/config';
 import { fmt } from '../timeline/fx';
+import { ContactCard } from './Brand';
 
 /** Mode D — Accessible reading mode. First-class structured version of the whole proposal. */
 export function ReadingMode() {
-  const c = config.contact;
-  const contactLines = [c.name, c.email, c.phone, c.website].filter(Boolean);
   return (
     <main className="reading" id="main">
       <nav aria-label="Reading mode navigation" className="reading-nav">
@@ -20,6 +19,7 @@ export function ReadingMode() {
         <h1>PathSense Home</h1>
         <p className="lede">Independence, one meaningful task at a time. A proposal to co-design and evaluate a personalised AI task-assistance platform with an Australian organisation supporting people who are blind or have low vision.</p>
         <p className="fine">{config.disclosure} The cinematic presentation runs for about {fmt(totalDuration)}. Everything it says is written here.</p>
+        <p className="fine">Presented by {config.contact.name}</p>
       </header>
 
       <section id="story" aria-labelledby="h-story">
@@ -93,7 +93,8 @@ export function ReadingMode() {
         <ol>{proposal.partnership.pathway.map(([k, v]) => <li key={k}><strong>{k}.</strong> {v}</li>)}</ol>
         <h3>We are seeking a discussion about</h3><ul>{proposal.partnership.discussion.map((s) => <li key={s}>{s}</li>)}</ul>
         <p><strong>Next step:</strong> {proposal.partnership.nextStep}</p>
-        <p>{contactLines.length ? contactLines.join(' · ') : 'Contact details: to be configured by the presenter (src/content/config.ts).'}</p>
+        <h3>Contact</h3>
+        <ContactCard />
       </section>
 
       <section id="transcript" aria-labelledby="h-transcript">

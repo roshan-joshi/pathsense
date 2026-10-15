@@ -42,6 +42,10 @@ npm run test:pages     # builds to dist-pages/ and runs all end-to-end tests und
 
 The default `npm run build` uses relative paths, so the offline package still works from a double-click.
 
+## Branding
+
+The presentation is presented by **E Multitech Solution Pvt. Ltd.** A restrained frosted-glass logo signature appears bottom-right from the first chapter's story lines onward (never during the black opening), and the closing scene, end panel and reading mode show a contact card with working links. Contact details live in `src/content/config.ts`; the logo is a local copy of the official asset (`public/brand/`, provenance in `docs/BRAND-ASSETS.md`); the design rationale is in `docs/BRANDING-REVISION.md`.
+
 ## Modes
 
 | Mode | How to open | What it is |
