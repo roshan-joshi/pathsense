@@ -1,0 +1,269 @@
+{
+  "voice": "Kokoro-82M bf_emma",
+  "speed": 0.92,
+  "gapSeconds": 0.55,
+  "chapters": [
+    {
+      "id": "ch1",
+      "duration": 42.38,
+      "lines": [
+        {
+          "text": "Before anything is seen, there is sound. A kettle. A fridge door. A room known by heart.",
+          "start": 9,
+          "end": 14.2
+        },
+        {
+          "text": "For years, he ran a small café. He knew where everything belonged.",
+          "start": 14.75,
+          "end": 18.7
+        },
+        {
+          "text": "Then his vision changed.",
+          "start": 19.25,
+          "end": 20.97
+        },
+        {
+          "text": "The knowledge stayed. What moved out of reach was information. What is on the shelf. Which carton is which. Where the keys were left.",
+          "start": 21.52,
+          "end": 28.83
+        },
+        {
+          "text": "He already has his own ways. A cane. Training. A voice assistant. His hands, and his memory of the place.",
+          "start": 29.38,
+          "end": 35.93
+        },
+        {
+          "text": "PathSense Home is a proposal to put the missing information back within reach.",
+          "start": 36.48,
+          "end": 40.91
+        }
+      ]
+    },
+    {
+      "id": "ch2",
+      "duration": 35.94,
+      "lines": [
+        {
+          "text": "The tasks that matter most are ordinary ones.",
+          "start": 0.7,
+          "end": 3.36
+        },
+        {
+          "text": "Finding the coffee. Telling the milk from the juice. Keys, the remote, a letter on the bench.",
+          "start": 3.91,
+          "end": 9.22
+        },
+        {
+          "text": "What is in the fridge and the pantry. Which bottle is for the washing. The simple routines that make a morning.",
+          "start": 9.77,
+          "end": 15.92
+        },
+        {
+          "text": "Plenty of tools can describe an object. The harder problem is finishing the task the object belongs to.",
+          "start": 16.47,
+          "end": 22.66
+        },
+        {
+          "text": "A jar is only useful once you know it is the coffee, it is within reach, and the milk is in the fridge.",
+          "start": 23.21,
+          "end": 29.13
+        },
+        {
+          "text": "That is the problem PathSense sets out to help with. Not detection. Completion.",
+          "start": 29.68,
+          "end": 34.48
+        }
+      ]
+    },
+    {
+      "id": "ch3",
+      "duration": 53.9,
+      "lines": [
+        {
+          "text": "Here is the first thing we intend to build.",
+          "start": 0.7,
+          "end": 3.08
+        },
+        {
+          "text": "One spoken goal. PathSense, help me find the coffee.",
+          "start": 3.63,
+          "end": 7.06
+        },
+        {
+          "text": "The phone understands the goal, then asks for the view it needs.",
+          "start": 7.61,
+          "end": 11.25
+        },
+        {
+          "text": "He points the camera at the pantry. The system looks for a likely match, and says what it sees without pretending to be certain.",
+          "start": 11.8,
+          "end": 18.82
+        },
+        {
+          "text": "I can see what looks like a coffee container on the middle shelf, towards the right.",
+          "start": 19.37,
+          "end": 23.78
+        },
+        {
+          "text": "He reaches, checks the jar by hand, and confirms.",
+          "start": 24.33,
+          "end": 27.5
+        },
+        {
+          "text": "Coffee found. Confirmed by him.",
+          "start": 28.05,
+          "end": 30.25
+        },
+        {
+          "text": "Everything you have just watched is a simulation of the intended experience, not a recording of a real trial.",
+          "start": 30.8,
+          "end": 37.2
+        },
+        {
+          "text": "But the shape of it matters. One goal. Relevant help. And a result verified by the person, not the machine.",
+          "start": 37.75,
+          "end": 44.46
+        },
+        {
+          "text": "From there, the same pattern could continue. Find the cup. Find the milk. While hot water and appliances remain his own steps.",
+          "start": 45.01,
+          "end": 52.45
+        }
+      ]
+    },
+    {
+      "id": "ch4",
+      "duration": 41.47,
+      "lines": [
+        {
+          "text": "The phone is where we start, because he already owns one.",
+          "start": 0.7,
+          "end": 3.67
+        },
+        {
+          "text": "But holding a phone while making breakfast is not always practical. So the roadmap has three stages, built on one system.",
+          "start": 4.22,
+          "end": 11.41
+        },
+        {
+          "text": "Stage one. The mobile camera. Our first prototype.",
+          "start": 11.96,
+          "end": 15.39
+        },
+        {
+          "text": "Stage two. A single room camera he can ask to look at an authorised area. Check the bench for my keys. Without picking anything up.",
+          "start": 15.94,
+          "end": 23.69
+        },
+        {
+          "text": "Stage three. Connected cameras across the home, able to say whether an item is visible now, or where it was last seen.",
+          "start": 24.24,
+          "end": 31.05
+        },
+        {
+          "text": "Each stage is only built if the previous one proves useful.",
+          "start": 31.6,
+          "end": 34.89
+        },
+        {
+          "text": "And every camera is on because he asked, visible when active, and his to switch off.",
+          "start": 35.44,
+          "end": 40
+        }
+      ]
+    },
+    {
+      "id": "ch5",
+      "duration": 31.86,
+      "lines": [
+        {
+          "text": "No two people want the same help.",
+          "start": 0.7,
+          "end": 2.82
+        },
+        {
+          "text": "Someone who ran a café for years may want short, direct answers. Someone newer to the kitchen may want every step.",
+          "start": 3.37,
+          "end": 10.22
+        },
+        {
+          "text": "So PathSense would be shaped by explicit preferences. Language. Speaking pace. How much detail. The places things usually live. What is remembered, and what is forgotten.",
+          "start": 10.77,
+          "end": 21.28
+        },
+        {
+          "text": "Nothing is inferred from a camera about a person's mood, ability or health.",
+          "start": 21.83,
+          "end": 26.33
+        },
+        {
+          "text": "The system should adapt to the person, not the other way around.",
+          "start": 26.88,
+          "end": 30.39
+        }
+      ]
+    },
+    {
+      "id": "ch6",
+      "duration": 39.03,
+      "lines": [
+        {
+          "text": "How will we know if it works? Not by how impressive the technology looks.",
+          "start": 0.7,
+          "end": 4.97
+        },
+        {
+          "text": "We would begin by understanding how a person does each task today. Choose one real problem. Build a limited prototype. Test it with people who want to take part. Measure what changed. Then improve, or stop.",
+          "start": 5.52,
+          "end": 18.33
+        },
+        {
+          "text": "The measures are plain. Was the right item found? Was the task completed? How much help was needed? Was it easier than the current method? Were there safety or accuracy failures? Would they use it again?",
+          "start": 18.88,
+          "end": 30.18
+        },
+        {
+          "text": "We have no results yet, and we will not invent any.",
+          "start": 30.73,
+          "end": 33.88
+        },
+        {
+          "text": "That is the point of asking you to help us test it properly.",
+          "start": 34.43,
+          "end": 37.57
+        }
+      ]
+    },
+    {
+      "id": "ch7",
+      "duration": 48.39,
+      "lines": [
+        {
+          "text": "Back in the kitchen, the outcome we are aiming for is small and real. The coffee found. The cup filled. The morning started on his own terms.",
+          "start": 0.7,
+          "end": 8.88
+        },
+        {
+          "text": "If that works for one person, the same approach could support many others. Finding belongings. Identifying ingredients. Reading documents. Managing household routines. Each in the way that suits them.",
+          "start": 9.43,
+          "end": 21.69
+        },
+        {
+          "text": "We are asking your organisation to help us co-design, evaluate and responsibly develop PathSense. Lived experience input. Accessibility and rehabilitation expertise. Feasibility testing. And support in finding funding partners.",
+          "start": 22.24,
+          "end": 37.62
+        },
+        {
+          "text": "Start with one real problem. Build a platform that can support many.",
+          "start": 38.17,
+          "end": 42.31
+        },
+        {
+          "text": "PathSense Home. Independence, one meaningful task at a time.",
+          "start": 42.86,
+          "end": 46.93
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# dependencies and build output
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+
+# generated exports (large; regenerate with the npm export scripts)
+exports/
+output/
+.frames/
+.narration-tmp/
+test-results/
+playwright-report/
+
+# private material: never publish
+backup-before-revision-v2/
+backup-*/
+references/
+tests/private-terms.local.json
+
+# local tooling and OS files
+.claude/
+.DS_Store
+*.log
+.env
+.env.*

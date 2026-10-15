@@ -1,0 +1,28 @@
+/* PathSense Home — design tokens. Dark charcoal, warm white, muted amber, natural wood, soft gold. */
+:root {
+  /* Australian identity: deep charcoal, cream and sand, ochre and terracotta earth, muted gold,
+     eucalyptus for verified states, a little dusk blue. Colour inspiration only; no cultural motifs are reproduced. */
+  --bg: #171311;
+  --bg-2: #1f1915;
+  --bg-3: #2b221b;
+  --ink: #f3ead9;          /* cream */
+  --ink-2: #dccbb0;        /* sand */
+  --ink-3: #a8957e;
+  --amber: #c97b3a;        /* ochre */
+  --amber-2: #e2a65a;      /* warm gold-ochre */
+  --amber-dim: rgba(201, 123, 58, 0.22);
+  --terracotta: #b4573a;
+  --red-earth: #7e3524;
+  --wood: #7a5a3a;
+  --ok: #8fb59a;           /* eucalyptus: verified */
+  --warn: #e2b36a;         /* sand-gold: uncertain */
+  --dusk: #2d3a4f;         /* used sparingly */
+  --muted: #6f6055;
+  --font-display: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius: 14px;
+  --radius-lg: 24px;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --focus: 0 0 0 3px #171311, 0 0 0 6px var(--amber-2);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

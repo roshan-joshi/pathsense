@@ -1,0 +1,33 @@
+.reading { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; font-size: 18px; line-height: 1.6; color: var(--ink); }
+.reading h1 { font-family: var(--font-display); font-weight: 500; font-size: 48px; margin: 8px 0; }
+.reading h2 { font-family: var(--font-display); font-weight: 500; font-size: 32px; margin: 48px 0 12px; color: var(--amber-2); border-top: 1px solid #2a241c; padding-top: 24px; }
+.reading h3 { font-size: 22px; margin: 24px 0 8px; }
+.reading h4 { font-size: 17px; margin: 14px 0 4px; color: var(--ink-2); }
+.reading .lede { font-size: 22px; color: var(--ink-2); }
+.reading .fine { font-size: 15px; color: var(--ink-3); }
+.reading .muted { color: var(--ink-3); font-weight: 400; font-size: 0.85em; }
+.reading dl div { margin: 10px 0; } .reading dt { font-weight: 600; } .reading dd { margin: 0; color: var(--ink-2); }
+.reading table { border-collapse: collapse; width: 100%; } .reading th, .reading td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #2a241c; vertical-align: top; }
+.reading-nav { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.reading-nav ul { display: flex; flex-wrap: wrap; gap: 6px 14px; list-style: none; padding: 0; margin: 0; }
+.reading-nav a { color: var(--amber-2); }
+.reading a { color: var(--amber-2); }
+.reading .btn { align-self: flex-start; text-decoration: none; }
+.reading .timer { font-size: 32px; font-variant-numeric: tabular-nums; }
+.presenter-view .btn[aria-current="true"] { background: var(--amber); color: #15130f; }
+
+/* Simulation overlay */
+.overlay .panel.sim { width: min(96%, 1400px); }
+.sim-grid { display: grid; grid-template-columns: 420px 1fr; gap: 40px; align-items: start; margin-top: 10px; }
+.sim-phone { width: 400px; height: 700px; border-radius: 48px; background: #0a0908; border: 10px solid #2b2621; overflow: hidden; position: relative; }
+.sim-screen { position: absolute; inset: 0; background: #120f0c; }
+.sim-goal { padding: 46px 22px 10px; font-size: 18px; color: var(--ink-3); } .sim-goal b { color: var(--ink); font-size: 24px; margin-left: 10px; }
+.sim-cam { position: relative; height: 320px; background: #000; overflow: hidden; } .sim-cam img { width: 100%; height: 100%; object-fit: cover; }
+.sim-cam.step-0 img { filter: brightness(0.2); }
+.sim-cand { position: absolute; left: 60%; top: 34%; width: 20%; height: 40%; border: 3px dashed var(--amber-2); border-radius: 10px; } .sim-cand.ok { border-style: solid; border-color: var(--ok); }
+.sim-scan { position: absolute; left: 0; right: 0; height: 14%; background: linear-gradient(180deg, rgba(226,187,106,0), rgba(226,187,106,0.4), rgba(226,187,106,0)); animation: scan 1.8s linear infinite; }
+@keyframes scan { from { top: -14%; } to { top: 100%; } }
+.sim-strip { padding: 16px 22px; } .sim-strip .process { flex-direction: column; align-items: stretch; gap: 6px; } .sim-strip .process-step { font-size: 15px; padding: 0; } .sim-strip .process-step::after, .sim-strip .process-dot { display: none; }
+.sim-body { font-size: 24px; line-height: 1.4; margin: 8px 0 16px; }
+@media (max-width: 1100px) { .sim-grid { grid-template-columns: 1fr; } .sim-phone { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sim-scan, .waveform i { animation: none; } }

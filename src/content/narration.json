@@ -1,0 +1,87 @@
+{
+  "voice": "Kokoro-82M neural TTS (Apache-2.0), see docs/NARRATION-SCRIPT.md — synthesised narration, not a voice actor",
+  "rate": 0.92,
+  "gapSeconds": 0.55,
+  "chapters": [
+    {
+      "id": "ch1",
+      "leadIn": 9.0,
+      "lines": [
+        "Before anything is seen, there is sound. A kettle. A fridge door. A room known by heart.",
+        "For years, he ran a small café. He knew where everything belonged.",
+        "Then his vision changed.",
+        "The knowledge stayed. What moved out of reach was information. What is on the shelf. Which carton is which. Where the keys were left.",
+        "He already has his own ways. A cane. Training. A voice assistant. His hands, and his memory of the place.",
+        "PathSense Home is a proposal to put the missing information back within reach."
+      ]
+    },
+    {
+      "id": "ch2",
+      "lines": [
+        "The tasks that matter most are ordinary ones.",
+        "Finding the coffee. Telling the milk from the juice. Keys, the remote, a letter on the bench.",
+        "What is in the fridge and the pantry. Which bottle is for the washing. The simple routines that make a morning.",
+        "Plenty of tools can describe an object. The harder problem is finishing the task the object belongs to.",
+        "A jar is only useful once you know it is the coffee, it is within reach, and the milk is in the fridge.",
+        "That is the problem PathSense sets out to help with. Not detection. Completion."
+      ]
+    },
+    {
+      "id": "ch3",
+      "lines": [
+        "Here is the first thing we intend to build.",
+        "One spoken goal. PathSense, help me find the coffee.",
+        "The phone understands the goal, then asks for the view it needs.",
+        "He points the camera at the pantry. The system looks for a likely match, and says what it sees without pretending to be certain.",
+        "I can see what looks like a coffee container on the middle shelf, towards the right.",
+        "He reaches, checks the jar by hand, and confirms.",
+        "Coffee found. Confirmed by him.",
+        "Everything you have just watched is a simulation of the intended experience, not a recording of a real trial.",
+        "But the shape of it matters. One goal. Relevant help. And a result verified by the person, not the machine.",
+        "From there, the same pattern could continue. Find the cup. Find the milk. While hot water and appliances remain his own steps."
+      ]
+    },
+    {
+      "id": "ch4",
+      "lines": [
+        "The phone is where we start, because he already owns one.",
+        "But holding a phone while making breakfast is not always practical. So the roadmap has three stages, built on one system.",
+        "Stage one. The mobile camera. Our first prototype.",
+        "Stage two. A single room camera he can ask to look at an authorised area. Check the bench for my keys. Without picking anything up.",
+        "Stage three. Connected cameras across the home, able to say whether an item is visible now, or where it was last seen.",
+        "Each stage is only built if the previous one proves useful.",
+        "And every camera is on because he asked, visible when active, and his to switch off."
+      ]
+    },
+    {
+      "id": "ch5",
+      "lines": [
+        "No two people want the same help.",
+        "Someone who ran a café for years may want short, direct answers. Someone newer to the kitchen may want every step.",
+        "So PathSense would be shaped by explicit preferences. Language. Speaking pace. How much detail. The places things usually live. What is remembered, and what is forgotten.",
+        "Nothing is inferred from a camera about a person's mood, ability or health.",
+        "The system should adapt to the person, not the other way around."
+      ]
+    },
+    {
+      "id": "ch6",
+      "lines": [
+        "How will we know if it works? Not by how impressive the technology looks.",
+        "We would begin by understanding how a person does each task today. Choose one real problem. Build a limited prototype. Test it with people who want to take part. Measure what changed. Then improve, or stop.",
+        "The measures are plain. Was the right item found? Was the task completed? How much help was needed? Was it easier than the current method? Were there safety or accuracy failures? Would they use it again?",
+        "We have no results yet, and we will not invent any.",
+        "That is the point of asking you to help us test it properly."
+      ]
+    },
+    {
+      "id": "ch7",
+      "lines": [
+        "Back in the kitchen, the outcome we are aiming for is small and real. The coffee found. The cup filled. The morning started on his own terms.",
+        "If that works for one person, the same approach could support many others. Finding belongings. Identifying ingredients. Reading documents. Managing household routines. Each in the way that suits them.",
+        "We are asking your organisation to help us co-design, evaluate and responsibly develop PathSense. Lived experience input. Accessibility and rehabilitation expertise. Feasibility testing. And support in finding funding partners.",
+        "Start with one real problem. Build a platform that can support many.",
+        "PathSense Home. Independence, one meaningful task at a time."
+      ]
+    }
+  ]
+}
